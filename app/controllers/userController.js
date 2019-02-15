@@ -398,6 +398,7 @@ let userList = (req, res) => {
         .select('-__v -_id')
         .lean()
         .exec((err, result) => {
+            console.log('USER LIST CALLED');
             if (err) {
                 console.log(err);
                 let apiResponse = response.generate(true, 'Error Occured', 500, null)
@@ -407,6 +408,8 @@ let userList = (req, res) => {
                 let apiResponse = response.generate(true, 'Not Found', 404, null)
                 res.send(apiResponse);
             } else {
+                // console.log('Success');
+                // console.log(result);
                 let apiResponse = response.generate(false, 'sucess', 200, result)
                 res.send(apiResponse);
             }
